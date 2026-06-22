@@ -1,0 +1,29 @@
+# Xử lý dữ liệu
+pandas
+numpy
+
+# Machine Learning
+scikit-learn
+
+# Visualization
+matplotlib
+seaborn
+
+# PhoBert
+transformers
+datasets
+
+torch
+
+underthesea
+
+sentencepiece
+
+accelerate
+
+# Demo
+streamlit
+
+# Jupyter Notebook
+jupyter
+ipykernel
