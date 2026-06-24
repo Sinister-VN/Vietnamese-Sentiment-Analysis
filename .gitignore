@@ -1,0 +1,11 @@
+# Bỏ qua các file và thư mục lưu model / checkpoint
+checkpoint-*/
+
+# Bỏ qua thư mục môi trường ảo Python
+venv/
+env/
+.venv/
+__pycache__/
+
+# Bỏ qua models
+models/
