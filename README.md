@@ -1,21 +1,33 @@
 # Vietnamese Sentiment Analysis using PhoBERT
 
-## Overview
+## Project Overview
 
-This project focuses on Vietnamese Sentiment Analysis using the UIT-VSFC (Vietnamese Students Feedback Corpus) dataset. The goal is to classify student feedback into three sentiment categories:
+This project aims to classify Vietnamese student feedback into three sentiment categories: **Negative**, **Neutral**, and **Positive** using deep learning techniques.
 
-* Negative
-* Neutral
-* Positive
+The project follows a complete Natural Language Processing (NLP) workflow, including:
 
-The project follows a complete NLP pipeline:
+- Exploratory Data Analysis (EDA)
+- Data preprocessing
+- Baseline model using TF-IDF and Logistic Regression
+- Fine-tuning PhoBERT
+- Model evaluation
+- Model comparison
+- Interactive sentiment prediction with Streamlit
 
-1. Exploratory Data Analysis (EDA)
-2. Data Preprocessing
-3. Baseline Model (TF-IDF + Logistic Regression)
-4. Fine-tuning PhoBERT
-5. Model Evaluation
-6. Streamlit Web Demo
+The project is implemented using PyTorch and Hugging Face Transformers on the UIT-VSFC dataset.
+
+---
+
+## Key Results
+
+| Metric | Value |
+|---------|------:|
+| Best Model | PhoBERT + PyVi |
+| Accuracy | **88.02%** |
+| F1 Score | **88.00%** |
+| Classes | Negative, Neutral, Positive |
+
+Compared with the traditional TF-IDF + Logistic Regression baseline, the proposed PhoBERT model achieved a significant improvement in classification performance.
 
 ---
 
@@ -23,29 +35,141 @@ The project follows a complete NLP pipeline:
 
 Dataset: **UIT-VSFC (Vietnamese Students Feedback Corpus)**
 
-The dataset contains three columns:
+The dataset consists of three columns:
 
-| Column    | Description               |
-| --------- | ------------------------- |
-| sentence  | Student feedback sentence |
-| sentiment | Sentiment label           |
-| topic     | Feedback topic            |
+| Column | Description |
+|---------|-------------|
+| sentence | Vietnamese student feedback |
+| sentiment | Sentiment label |
+| topic | Feedback topic |
 
 ### Sentiment Labels
 
-| Label    |
-| -------- |
+| Label |
+|-------|
 | negative |
-| neutral  |
+| neutral |
 | positive |
 
-### Example
+### Dataset Split
 
-| sentence                                 | sentiment | topic      |
-| ---------------------------------------- | --------- | ---------- |
-| Đội ngũ bảo trì quá thưa thớt dẫn đến... | negative  | facility   |
-| Chương trình học giúp tôi trở thành...   | positive  | curriculum |
-| Phương pháp giảng dạy phù hợp với...     | neutral   | curriculum |
+| Split | Samples |
+|-------|---------:|
+| Train | 8,144 |
+| Validation | 2,036 |
+
+---
+
+## Project Workflow
+
+The project consists of the following stages:
+
+1. Exploratory Data Analysis
+2. Data Preprocessing
+3. Baseline Model (TF-IDF + Logistic Regression)
+4. PhoBERT Fine-tuning
+5. Hyperparameter Optimization
+6. Model Evaluation
+7. Model Comparison
+8. Streamlit Application
+
+---
+
+## Exploratory Data Analysis
+
+The following analyses were performed:
+
+- Missing value analysis
+- Duplicate sample analysis
+- Sentiment distribution
+- Topic distribution
+- Sentence length analysis
+
+### Sentiment Distribution
+
+<p align="center">
+    <img src="images/sentiment_distribution.png" width="600">
+</p>
+
+### Topic Distribution
+
+<p align="center">
+    <img src="images/topic_distribution.png" width="600">
+</p>
+
+### Sentence Length Distribution
+
+<p align="center">
+    <img src="images/sentence_length_distribution.png" width="600">
+</p>
+
+---
+
+## Models
+
+### Baseline Model
+
+The baseline model uses:
+
+- TF-IDF Vectorizer
+- Logistic Regression
+
+This model provides a traditional machine learning benchmark for comparison.
+
+### Proposed Model
+
+The final model consists of:
+
+- PhoBERT-base
+- PyVi word segmentation
+- Maximum sequence length: 48
+- Hugging Face Trainer
+- PyTorch
+
+---
+
+## Model Performance
+
+| Model | Accuracy | F1 Score |
+|--------|---------:|---------:|
+| TF-IDF + Logistic Regression | 82.00% | 82.00% |
+| PhoBERT + PyVi | **88.02%** | **88.00%** |
+
+### Accuracy Comparison
+
+<p align="center">
+    <img src="images/model_accuracy_comparison.png" width="700">
+</p>
+
+### F1 Score Comparison
+
+<p align="center">
+    <img src="images/model_f1_comparison.png" width="700">
+</p>
+
+### Confusion Matrix
+
+<p align="center">
+    <img src="images/confusion_matrix_phobert.png" width="650">
+</p>
+
+---
+
+## Streamlit Application
+
+An interactive web application was developed using Streamlit.
+
+The application allows users to:
+
+- Input Vietnamese text
+- Predict sentiment
+- Display prediction confidence
+
+Example interface:
+
+<p align="center">
+    <img src="images/streamlit_demo.png" width="800">
+</p>
 
 ---
 
@@ -53,42 +177,65 @@ The dataset contains three columns:
 
 ```text
 Vietnamese-Sentiment-Analysis
-
+│
 ├── dataset/
 │   ├── train.csv
 │   └── val.csv
 │
 ├── notebooks/
-│   └── EDA.ipynb
+│   ├── EDA.ipynb
+│   ├── Baseline.ipynb
+│   ├── PhoBERT.ipynb
+│   └── Compare_Models.ipynb
 │
 ├── src/
 │
 ├── models/
 │
+├── images/
+│
 ├── app.py
 ├── requirements.txt
+├── .gitignore
 └── README.md
 ```
 
 ---
 
+## Technologies
+
+The project uses the following libraries and frameworks:
+
+- Python
+- PyTorch
+- Hugging Face Transformers
+- PhoBERT
+- PyVi
+- Scikit-learn
+- Pandas
+- NumPy
+- Matplotlib
+- Streamlit
+
+---
+
 ## Installation
 
-### Clone the repository
+Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/Vietnamese-Sentiment-Analysis.git
+git clone https://github.com/<your-username>/Vietnamese-Sentiment-Analysis.git
 
 cd Vietnamese-Sentiment-Analysis
 ```
 
-### Create virtual environment
+Create a virtual environment:
 
 ```bash
 python -m venv venv
 ```
 
-### Activate virtual environment
+Activate the virtual environment.
 
 Windows:
 
@@ -96,131 +243,59 @@ Windows:
 venv\Scripts\activate
 ```
 
-Linux/Mac:
+Linux / macOS:
 
 ```bash
 source venv/bin/activate
 ```
 
-### Install dependencies
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
-
-## Exploratory Data Analysis (EDA)
-
-The following analyses have been completed:
-
-### Dataset Overview
-
-* Training set loaded successfully
-* Validation set loaded successfully
-* Three sentiment classes:
-
-  * negative
-  * neutral
-  * positive
+> **Note:** The requirements file was generated from the final tested environment to ensure reproducibility.
 
 ---
 
-### Missing Values
+## Usage
 
-Checked missing values in:
+Launch the Streamlit application:
 
-* sentence
-* sentiment
-* topic
-
-Result:
-
-```text
-No missing values detected.
+```bash
+streamlit run app.py
 ```
 
 ---
 
-### Duplicate Samples
+## Repository Contents
 
-Duplicate records are identified and can be removed during preprocessing.
-
----
-
-### Sentiment Distribution
-
-The dataset contains three sentiment categories:
-
-* Negative
-* Neutral
-* Positive
-
-The class distribution is visualized using a count plot.
-
-<p align="center">
-  <img src="images/sentiment_distribution.png" width="600">
-</p>
+| Notebook | Description |
+|----------|-------------|
+| EDA.ipynb | Exploratory data analysis |
+| Baseline.ipynb | TF-IDF + Logistic Regression |
+| PhoBERT.ipynb | PhoBERT fine-tuning |
+| Compare_Models.ipynb | Performance comparison |
 
 ---
 
-### Topic Distribution
+## Future Improvements
 
-Feedback topics include:
+Possible future work includes:
 
-* facility
-* curriculum
-* teacher
-* others
-
-The topic distribution is visualized for better understanding of the dataset.
-
-<p align="center">
-  <img src="images/topic_distribution.png" width="600">
-</p>
+- Deploy the Streamlit application
+- Experiment with larger Vietnamese language models
+- Hyperparameter optimization
+- Topic-aware sentiment classification
+- Error analysis on misclassified samples
 
 ---
 
-### Sentence Length Analysis
+## Author
 
-Sentence lengths are analyzed to:
+Nguyen Nam
 
-* Understand text characteristics
-* Determine the appropriate max_length parameter for PhoBERT
-* Observe the distribution of short and long sentences
+GitHub:
 
-<p align="center">
-  <img src="images/sentence_length_distribution.png" width="600">
-</p>
-
----
-
-## Technologies
-
-* Python
-* Pandas
-* NumPy
-* Matplotlib
-* Seaborn
-* Scikit-learn
-* PyTorch
-* Hugging Face Transformers
-* PhoBERT
-* Streamlit
-
----
-
-## Next Steps
-
-* [x] Dataset Exploration
-* [x] Missing Value Analysis
-* [x] Duplicate Analysis
-* [x] Sentiment Distribution Analysis
-* [x] Topic Distribution Analysis
-* [x] Sentence Length Analysis
-* [ ] Data Preprocessing
-* [ ] TF-IDF + Logistic Regression
-* [ ] PhoBERT Fine-tuning
-* [ ] Model Evaluation
-* [ ] Streamlit Deployment
-
+https://github.com/Sinister-VN
