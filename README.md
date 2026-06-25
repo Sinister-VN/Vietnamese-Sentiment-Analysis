@@ -224,7 +224,7 @@ The project uses the following libraries and frameworks:
 Clone the repository:
 
 ```bash
-git clone https://github.com/<your-username>/Vietnamese-Sentiment-Analysis.git
+git clone https://github.com/Sinister-VN/Vietnamese-Sentiment-Analysis.git
 
 cd Vietnamese-Sentiment-Analysis
 ```
@@ -264,7 +264,7 @@ pip install -r requirements.txt
 Launch the Streamlit application:
 
 ```bash
-streamlit run app.py
+streamlit run app.py --server.fileWatcherType none
 ```
 
 ---
